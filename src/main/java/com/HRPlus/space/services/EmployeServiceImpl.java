@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.HRPlus.space.entities.Conge;
 import com.HRPlus.space.entities.Employe;
 import com.HRPlus.space.repositories.IEmployeRepo;
 
@@ -53,6 +54,16 @@ public class EmployeServiceImpl  {
 
 		return employeRepo.findById(id);
 
+	}
+	
+	public List<Conge> getCongeByemployeId (Long id){
+		
+		Employe employe = new Employe();
+		if (employe.getConges() != null)
+			return employe.getConges();
+		else 
+			return null ;
+		
 	}
 
 }

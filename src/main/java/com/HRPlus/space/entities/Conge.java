@@ -31,6 +31,7 @@ public class Conge implements Serializable {
 	private Date debutCong;
 	private Date finCong;
 	private String description;
+	private String duree ; 
 	private StatusOfDemand statusOfDemand;
 	@ManyToOne
 	@JoinColumn(name = "idUser", referencedColumnName = "idUser")

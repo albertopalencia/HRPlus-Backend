@@ -1,13 +1,13 @@
 package com.HRPlus.space.repositories;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.HRPlus.space.entities.Employe;
+import com.HRPlus.space.entities.Presence;
+
 
 @Repository
-public interface IEmployeRepo extends JpaRepository<Employe, Long> {
+public interface PresenceRepository extends JpaRepository<Presence, Long> {
 	
-	//public Employe findEmployeById(Long id ); 
-
 }

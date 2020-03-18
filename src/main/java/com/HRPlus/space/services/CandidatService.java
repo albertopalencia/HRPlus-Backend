@@ -1,19 +1,38 @@
 package com.HRPlus.space.services;
 
-import java.util.List;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-import com.HRPlus.space.entities.Candidat;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.AbstractFileResolvingResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.stereotype.Service;
+
 import com.HRPlus.space.repositories.ICandidatRepo;
 
-public class CandidatServiceImpl {
+@Service
+public class CandidatService {
 	
+	@Autowired
 	private ICandidatRepo candidatRepo ; 
-
-	public List<Candidat> getAllCandidate()
-	{
-		return candidatRepo.findAll();
-	}
 	
+	private final Path fileStorageLocation = Paths.get("C:\\Users\\ASUS\\Desktop\\candidat-csv\\");
+
+	public Resource loadFileAsResource(String fileName) throws Exception {
+        try {
+            Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
+            Resource resource = (Resource) new UrlResource(filePath.toUri());
+            if(((AbstractFileResolvingResource) resource).exists()) {
+                return resource;
+            } else {
+                throw new Exception("File not found " + fileName);
+            }
+        } catch (MalformedURLException ex) {
+            throw new Exception("File not found " + fileName, ex);
+        }
+    }
 
 	
 	

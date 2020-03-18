@@ -1,5 +1,6 @@
 package com.HRPlus.space.entities;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,6 +31,14 @@ public class Employe extends UserInformation {
 	private static final long serialVersionUID = 1L;
 	private String status;
 	private String salary;
+	private String CNSS; 
+	private String departement;
+	private String fonction;
+	private String typeContrat;
+	private LocalDate dateEntree;
+	private String coutHeuresSup;
+	private String dureeConges;
+	
 	private boolean archived;
 	
 
