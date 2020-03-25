@@ -6,25 +6,33 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.HRPlus.space.entities.Meeting;
+import com.HRPlus.space.repositories.IMeetingRepo;
 import com.HRPlus.space.services.MeetingServiceImpl;
 
+
 @RestController
+
+@CrossOrigin(origins = "http://localhost:4200")
 public class MeetingController {
 
 	@Autowired
 	private MeetingServiceImpl meetingService;
+	
+	private IMeetingRepo meetingRepo ; 
 
 	@GetMapping("/meetings")
 	public List<Meeting> getAllMeetings() {
-		return (List<Meeting>) meetingService.getAllMeetings();
+		return meetingRepo.findAll();
 	}
 
 	@GetMapping("/meetings/{id}")

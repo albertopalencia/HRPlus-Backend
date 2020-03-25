@@ -8,12 +8,14 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Todo {
 	
 	@Id
@@ -24,10 +26,6 @@ public class Todo {
 	private boolean completed=false;
 	private Date createdAt;
 	
-	public Todo(String title) {
-		super();
-		this.title = title;
-	}
 	
 	
 	

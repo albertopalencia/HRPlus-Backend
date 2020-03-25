@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.HRPlus.space.entities.Todo;
 import com.HRPlus.space.repositories.ITodoRepository;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class TodoController {
 	
@@ -29,10 +31,15 @@ public class TodoController {
     }
 
     @PostMapping("/todos")
-    public Todo createTodo(@Valid @RequestBody Todo todo) {
+    public Todo createTodo(@RequestBody Todo todo) {
         todo.setCompleted(false);
         return todoRepository.save(todo);
     }
+    
+    @DeleteMapping("/todos/{id}")
+	void deleteNote(@PathVariable Long id) {
+		todoRepository.deleteById(id);
+	  }
     
     
 //
